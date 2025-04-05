@@ -26,7 +26,7 @@ async function fetchMusics() {
                     <p>Artist: ${music.artist}</p>
                     <p>Genre: ${music.genre}</p>
                     <p>Release Year: ${music.release_year}</p>
-                    <p><a href="${music.track_url}" target="_blank">Lyssna på låten</a></p>
+                    <p><a href="${music.track_url}" target="_blank">Listen</a></p>
                     <img src="${music.cover_image}" alt="${music.title} cover" width="100">
                 `;
                 musicListDiv.appendChild(musicItem);
