@@ -10,12 +10,14 @@ export function renderGroupedByGenre(groupedMusics) {
             const item = document.createElement('div');
             item.classList.add('music-card');
             item.innerHTML = `
-                <h3>${music.title}</h3>
-                <p>Artist: ${music.artist}</p>
-                <p>Release Year: ${music.releaseYear}</p>
-                <p><a href="${music.trackUrl}" target="_blank">Listen</a></p>
-                <img src="${music.coverImage}" alt="${music.title} cover" width="100">
-            `;
+            <img src="${music.coverImage}" alt="${music.title} cover" width="200">
+            <p>
+                <a href="${music.trackUrl}" target="_blank" class="listen-btn">Listen</a>
+            </p>
+            <h3>${music.title}</h3>
+            <p class="music-info">Artist: ${music.artist}</p>
+            <p class="music-info">Release Year: ${music.releaseYear}</p>
+        `;
             section.appendChild(item);
         }
         );

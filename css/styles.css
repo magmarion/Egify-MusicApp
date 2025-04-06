@@ -1,33 +1,273 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    color: #333;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    color: #2d3748;
     padding: 2rem;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
 h1 {
     text-align: center;
-    color: #444;
+    color: #1a202c;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2 {
+    text-align: center;
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 3px;
 }
 
 #musicList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
+    padding: 1rem;
 }
 
 #musicList div {
     background: #fff;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#musicList div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+#musicList div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
 #musicList img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 0.5rem;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
     display: block;
+    margin: 0 auto 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#musicList div {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+#musicList div:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+#musicList div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#musicList div:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Listen Link Button Styles */
+.music-card a {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0.025em 0.4em -0.02em hsl(0 0% 100% / 0.25),
+        0 0.05em 0 0 hsl(260 0% 50%) inset,
+        0 -0.05em 0 0 hsl(260 0% 0%) inset;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    min-width: 100px;
+}
+
+.music-card a .front-layer {
+    transition-duration: 300ms;
+    border-radius: 9999px;
+    inset: 0.125rem;
+    position: absolute;
+    background: radial-gradient(40% 50% at center 100%,
+            rgba(255, 239, 206, 0.15),
+            transparent),
+        radial-gradient(80% 100% at center 120%,
+            rgba(255, 239, 204, 0.2),
+            transparent),
+        rgba(5, 5, 5, 1);
+}
+
+.music-card a .text {
+    position: relative;
+    color: white;
+}
+
+/* Spinner animation (hidden by default) */
+.music-card a .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-image: linear-gradient(transparent,
+            transparent 30%,
+            #fffa,
+            transparent 70%,
+            transparent);
+    animation: spinner 2s linear infinite;
+}
+
+/* Loading state */
+.music-card a.loading .text {
+    opacity: 0;
+}
+
+.music-card a.loading .spinner {
+    opacity: 1;
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.music-card a.listen-btn {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #f8f7ff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    width: 100px;
+    background: linear-gradient(135deg, #5a2d8c 0%, #3b1a6b 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Glow Effect (Hidden by Default) */
+.music-card a.listen-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+}
+
+/* Hover Effects */
+.music-card a.listen-btn:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow:
+        0 5px 15px rgba(154, 80, 224, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #6d3ba5 0%, #4c2285 100%);
+}
+
+.music-card a.listen-btn:hover::after {
+    opacity: 0.3;
+    animation: shine 1.5s infinite;
+}
+
+/* Active State */
+.music-card a.listen-btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 5px rgba(154, 80, 224, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.music-info {
+    color: #6b7280;
+    /* Lighter text color */
+    font-size: 0.9rem;
+    /* Slightly smaller */
+    margin: 0.2rem 0;
+    /* Tighter spacing */
+}
+
+/* Shine Animation */
+@keyframes shine {
+    0% {
+        transform: rotate(30deg) translate(-10%, -10%);
+    }
+
+    100% {
+        transform: rotate(30deg) translate(10%, 10%);
+    }
 }
