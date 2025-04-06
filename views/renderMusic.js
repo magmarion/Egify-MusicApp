@@ -12,9 +12,9 @@ export function renderMusic(musicArray) {
             <h3>${music.title}</h3>
             <p>Artist: ${music.artist}</p>
             <p>Genre: ${music.genre}</p>
-            <p>Release Year: ${music.release_year}</p>
-            <p><a href="${music.track_url}" target="_blank">Listen</a></p>
-            <img src="${music.cover_image}" alt="${music.title} cover" width="100">
+            <p>Release Year: ${music.releaseYear}</p>
+            <p><a href="${music.trackUrl}" target="_blank">Listen</a></p>
+            <img src="${music.coverImage}" alt="${music.title} cover" width="100">
         `;
         musicListDiv.appendChild(musicItem);
     });
