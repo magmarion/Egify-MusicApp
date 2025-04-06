@@ -1,9 +1,3 @@
-import { fetchMusics } from "./utils/api.js";
-import { renderMusic } from "./views/renderMusic.js";
+import { initMusicApp } from "./controller/musicController.js";
 
-async function initApp() {
-    const musics = await fetchMusics();
-    renderMusic(musics);
-}
-
-initApp();
+initMusicApp();

@@ -1,21 +1,24 @@
-export function renderMusic(musicArray) {
-    const musicListDiv = document.getElementById('musicList');
-    musicListDiv.innerHTML = '';
+export function renderGroupedByGenre(groupedMusics) {
+    const container = document.getElementById('musicList');
+    container.innerHTML = '';
 
-    if (!musicArray.length) {
-        musicListDiv.innerHTML = '<p>No music to show.</p>';
-        return;
+    for (const genre in groupedMusics) {
+        const section = document.createElement('section');
+        section.innerHTML = `<h2>${genre}</h2>`;
+
+        groupedMusics[genre].forEach(music => {
+            const item = document.createElement('div');
+            item.classList.add('music-card');
+            item.innerHTML = `
+                <h3>${music.title}</h3>
+                <p>Artist: ${music.artist}</p>
+                <p>Release Year: ${music.releaseYear}</p>
+                <p><a href="${music.trackUrl}" target="_blank">Listen</a></p>
+                <img src="${music.coverImage}" alt="${music.title} cover" width="100">
+            `;
+            section.appendChild(item);
+        }
+        );
+        container.appendChild(section);
     }
-    musicArray.forEach(music => {
-        const musicItem = document.createElement('div');
-        musicItem.innerHTML = `
-            <h3>${music.title}</h3>
-            <p>Artist: ${music.artist}</p>
-            <p>Genre: ${music.genre}</p>
-            <p>Release Year: ${music.releaseYear}</p>
-            <p><a href="${music.trackUrl}" target="_blank">Listen</a></p>
-            <img src="${music.coverImage}" alt="${music.title} cover" width="100">
-        `;
-        musicListDiv.appendChild(musicItem);
-    });
 }
