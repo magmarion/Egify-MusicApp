@@ -2,7 +2,7 @@ export const mockMusics = [
     {
         title: "Faded",
         artist: "Alan Walker",
-        genre: "Electro house",
+        genre: "Dance Electronoic",
         releaseYear: "2015",
         trackUrl: "https://youtu.be/kId1v7JDJtY",
         coverImage: "https://i1.sndcdn.com/artworks-000166082795-l5qemj-t500x500.jpg"

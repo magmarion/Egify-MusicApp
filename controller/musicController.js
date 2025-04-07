@@ -2,7 +2,7 @@
 import { mockMusics } from "../utils/mockedData.js";
 import { Music } from "../models/musicModel.js";
 import { groupByGenreAndArtist } from "../models/musicModel.js";
-import { renderGroupedMusic } from "../views/musicView.js";
+import { renderGroupedMusic } from "../views/renderMusic.js";
 
 export async function initMusicApp() {
     // const rawData = await fetchMusics();
@@ -18,9 +18,7 @@ export async function initMusicApp() {
         m.coverImage
     ));
 
-    // Gruppera enligt genre + artist
     const grouped = groupByGenreAndArtist(musics);
 
-    // Rendera den grupperade datan
     renderGroupedMusic(grouped);
 }
