@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'fonarto', sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
     color: #2d3748;
     padding: 2rem;
@@ -150,11 +150,6 @@ h1::after {
         rgba(5, 5, 5, 1);
 }
 
-.music-card a .text {
-    position: relative;
-    color: white;
-}
-
 /* Spinner animation (hidden by default) */
 .music-card a .spinner {
     position: absolute;
@@ -194,12 +189,6 @@ h1::after {
 .music-card a.listen-btn {
     display: inline-block;
     padding: 0.5em 1.5em;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #f8f7ff;
-    text-decoration: none;
-    text-align: center;
     border-radius: 12px;
     width: 100px;
     background: linear-gradient(135deg, #5a2d8c 0%, #3b1a6b 100%);
@@ -211,6 +200,15 @@ h1::after {
     transition: all 0.4s ease;
     border: none;
     cursor: pointer;
+}
+
+.music-card a.listen-btn .btn-text {
+    font-family: 'Fonarto', sans-serif;
+    font-size: 1.2rem;
+    color: #f8f7ff;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
 }
 
 /* Glow Effect (Hidden by Default) */
