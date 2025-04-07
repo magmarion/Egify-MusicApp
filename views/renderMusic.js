@@ -11,8 +11,10 @@ export function renderGroupedByGenre(groupedMusics) {
             item.classList.add('music-card');
             item.innerHTML = `
             <img src="${music.coverImage}" alt="${music.title} cover" width="200">
-            <p>
-                <a href="${music.trackUrl}" target="_blank" class="listen-btn">Listen</a>
+             <p>
+                <a href="${music.trackUrl}" target="_blank" class="listen-btn">
+                    <span class="btn-text">Listen</span>
+                </a>
             </p>
             <h3>${music.title}</h3>
             <p class="music-info">Artist: ${music.artist}</p>
