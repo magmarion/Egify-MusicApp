@@ -9,13 +9,10 @@ export class Music {
     }
 }
 
-export function groupByGenreAndArtist(musicArray) {
+export function groupByGenre(musicArray) {
     return musicArray.reduce((acc, music) => {
-        if (!acc[music.genre]) acc[music.genre] = {};
-        if (!acc[music.genre][music.artist]) acc[music.genre][music.artist] = [];
-        acc[music.genre][music.artist].push(music);
+        if (!acc[music.genre]) acc[music.genre] = [];
+        acc[music.genre].push(music);
         return acc;
     }, {});
 }
-
-
