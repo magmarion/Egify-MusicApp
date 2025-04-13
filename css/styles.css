@@ -269,3 +269,145 @@ h1::after {
         transform: rotate(30deg) translate(10%, 10%);
     }
 }
+
+
+.modal.hidden {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+}
+
+.add-to-playlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-playlist-btn:hover {
+    background-color: #5a2d8c;
+}
+
+.delete-playlist-btn {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+.delete-playlist-btn:hover {
+    background-color: #c53030;
+}
+
+/* Lägg till dessa regler i din CSS */
+.playlists-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.new-playlist-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(118, 75, 162, 0.1);
+    border: 2px dashed #764ba2;
+}
+
+.new-playlist-card:hover {
+    background: rgba(118, 75, 162, 0.2);
+}
+
+.plus-icon {
+    font-size: 3rem;
+    color: #764ba2;
+    margin-bottom: 1rem;
+}
+
+.delete-playlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Modal för spellistskapande */
+.modal-content .tracks-selection {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.track-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.track-item:last-child {
+    border-bottom: none;
+}
+
+.track-item label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.track-item input {
+    margin-right: 0.5rem;
+}

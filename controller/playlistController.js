@@ -1,15 +1,37 @@
-import { rednerUserPlaylist, renderPlaylistCreation } from "../views/renderPlaylist.js";
 import { mockMusics } from "../utils/mockedData.js";
-
-let playlist = [];
+import { Playlist, PlaylistManager } from "../models/musicModel.js";
+import { renderUserPlaylist, renderPlaylistCreation } from "../views/renderPlaylist.js";
 
 export function initPlaylistApp() {
-    renderPlaylistCreation(mockMusics, handleCreatePlaylist);
-    rednerUserPlaylist(playlist);
+    refreshPlaylists();
+
+    document.getElementById("newPlaylistBtn")?.addEventListener("click", () => {
+        renderPlaylistCreation({
+            availableTracks: mockMusics,
+            existingPlaylists: PlaylistManager.getPlaylists(),
+            onCreate: (name, tracks) => {
+                const playlist = new Playlist(name, tracks);
+                PlaylistManager.savePlaylist(playlist);
+                refreshPlaylists();
+            }
+        });
+    });
 }
 
-function handleCreatePlaylist(name, selectedTrackUrls) {
-    const selectedTracks = mockMusics.filter(track => selectedTrackUrls.includes(track.trackUrl));
-    playlist.push({ name, tracks: selectedTracks });
-    rednerUserPlaylist(playlist);
+function refreshPlaylists() {
+    renderUserPlaylist(PlaylistManager.getPlaylists(), {
+        onDelete: (playlistName) => {
+            PlaylistManager.deletePlaylist(playlistName);
+            refreshPlaylists();
+        },
+        onAddTrack: (playlistName, track) => {
+            const playlists = PlaylistManager.getPlaylists();
+            const playlist = playlists.find(p => p.name === playlistName);
+            if (playlist) {
+                playlist.addTrack(track);
+                PlaylistManager.savePlaylist(playlist);
+                refreshPlaylists();
+            }
+        }
+    });
 }

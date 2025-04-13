@@ -31,6 +31,17 @@
 
     <h1>Top Songs</h1>
     <div id="musicList"></div>
+
+    <div id="playlistModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Add to Playlist</h3>
+            <input type="text" id="newPlaylistName" placeholder="New playlist name (optional)" />
+            <div id="existingPlaylists"></div>
+            <button id="addToPlaylistConfirm">Confirm</button>
+        </div>
+    </div>
+
 </body>
 
 </html>
