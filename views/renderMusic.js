@@ -1,3 +1,5 @@
+import { PlaylistManager, Playlist } from "../models/musicModel.js";
+
 export function renderGroupedByGenre(groupedMusics) {
     const container = document.getElementById('musicList');
     container.innerHTML = '';
@@ -13,9 +15,8 @@ export function renderGroupedByGenre(groupedMusics) {
             const addBtn = document.createElement('button');
             addBtn.textContent = '+';
             addBtn.classList.add('add-to-playlist-btn');
-            addBtn.addEventListener('click', () => {
-                showPlaylistPopup(music);
-            });
+            addBtn.dataset.music = JSON.stringify(music);
+            addBtn.addEventListener('click', handleAddToPlaylistClick);
 
             item.innerHTML = `
                 <img src="${music.coverImage}" alt="${music.title} cover" width="200">
@@ -37,32 +38,91 @@ export function renderGroupedByGenre(groupedMusics) {
     }
 }
 
-// Popup för att välja/lägga till spellista
+function handleAddToPlaylistClick(event) {
+    const music = JSON.parse(event.target.dataset.music);
+    showPlaylistPopup(music);
+}
+
 function showPlaylistPopup(music) {
     const popup = document.createElement('div');
     popup.classList.add('modal');
 
+    const playlists = PlaylistManager.getPlaylists();
+
     popup.innerHTML = `
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <h3>Add to Playlist</h3>
-            <input type="text" placeholder="New playlist name" id="playlistNameInput" />
-            <button id="addTrackBtn">Add</button>
+            <h3>Add "${music.title}" to playlist</h3>
+            
+            ${playlists.length > 0 ? `
+                <div class="playlist-options">
+                    ${playlists.map(playlist => `
+                        <button class="existing-playlist" data-name="${playlist.name}">
+                            ${playlist.name} (${playlist.tracks.length} tracks)
+                        </button>
+                    `).join('')}
+                </div>
+                <div class="divider">OR</div>
+            ` : ''}
+            
+            <div class="new-playlist">
+                <input type="text" placeholder="New playlist name" id="playlistNameInput" />
+                <button id="createNewBtn">Create New</button>
+            </div>
         </div>
     `;
 
     document.body.appendChild(popup);
 
-    popup.querySelector(".close-btn").addEventListener("click", () => popup.remove());
-    popup.querySelector("#addTrackBtn").addEventListener("click", () => {
-        const name = document.getElementById("playlistNameInput").value;
-        if (!name) return;
+    const closePopup = () => popup.remove();
 
-        const playlists = JSON.parse(localStorage.getItem("playlists") || "{}");
-        if (!playlists[name]) playlists[name] = [];
-        playlists[name].push(music);
-        localStorage.setItem("playlists", JSON.stringify(playlists));
+    popup.querySelector('.close-btn').addEventListener('click', closePopup);
 
-        popup.remove();
+    // Hantera befintliga spellistor
+    popup.querySelectorAll('.existing-playlist').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const playlistName = btn.dataset.name;
+            const playlist = playlists.find(p => p.name === playlistName);
+            if (playlist) {
+                playlist.addTrack(music);
+                PlaylistManager.savePlaylist(playlist);
+                closePopup();
+            }
+        });
+    });
+
+    // Hantera ny spellista
+    const createBtn = popup.querySelector('#createNewBtn');
+    const nameInput = popup.querySelector('#playlistNameInput');
+
+    createBtn.addEventListener('click', () => {
+        const newName = nameInput.value.trim();
+        if (newName) {
+            const newPlaylist = new Playlist(newName, [music]);
+            PlaylistManager.savePlaylist(newPlaylist);
+            closePopup();
+        } else {
+            // Visa felmeddelande nära input-fältet
+            nameInput.style.borderColor = '#e53e3e';
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'error-msg';
+            errorMsg.textContent = 'Please enter a playlist name';
+            errorMsg.style.color = '#e53e3e';
+            errorMsg.style.marginTop = '0.5rem';
+            errorMsg.style.fontSize = '0.9rem';
+
+            // Ta bort tidigare felmeddelande om det finns
+            const existingError = popup.querySelector('.error-msg');
+            if (existingError) existingError.remove();
+
+            nameInput.insertAdjacentElement('afterend', errorMsg);
+        }
+    });
+
+    // Återställ border-färg när användaren börjar skriva
+    nameInput.addEventListener('input', () => {
+        nameInput.style.borderColor = '#e2e8f0';
+        const errorMsg = popup.querySelector('.error-msg');
+        if (errorMsg) errorMsg.remove();
     });
 }
