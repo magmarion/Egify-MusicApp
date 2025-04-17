@@ -71,3 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const homeLink = document.getElementById("homeLink");
+
+    homeLink.addEventListener("click", (e) => {
+        const currentPath = window.location.pathname;
+        if (currentPath.endsWith("index.html") || currentPath === "/") {
+            e.preventDefault(); // Stoppa omdirigering
+        }
+    });
+});
