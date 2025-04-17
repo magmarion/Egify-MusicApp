@@ -1,0 +1,106 @@
+.playlist-options,
+.existing-playlists {
+    margin: 1rem 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.playlist-option,
+.existing-playlist {
+    padding: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.playlist-option label {
+    margin-left: 0.5rem;
+}
+
+.existing-playlist:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.no-playlists {
+    color: #666;
+    font-style: italic;
+    padding: 0.5rem;
+}
+
+.new-playlist-btn {
+    background: #764ba2;
+    margin: 2.2rem auto;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.new-playlist-btn:hover {
+    background: #5a2d8c;
+}
+
+.divider {
+    text-align: center;
+    margin: 1rem 0;
+    color: #718096;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: \"\";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.divider::before { margin-right: 1rem; }
+.divider::after { margin-left: 1rem; }
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.playlist-card {
+    position: relative;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.playlist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.delete-playlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.delete-playlist-btn:hover {
+    background-color: #c53030;
+}

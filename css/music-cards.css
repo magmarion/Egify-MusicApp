@@ -1,0 +1,184 @@
+#musicList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+#musicList div {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.9s ease forwards;
+    opacity: 0;
+}
+
+#musicList div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.add-to-playlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #764ba2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-playlist-btn:hover {
+    background-color: #5a2d8c;
+}
+
+.music-card a {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.6em 1.2em;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0.025em 0.4em -0.02em hsl(0 0% 100% / 0.25),
+        0 0.05em 0 0 hsl(260 0% 50%) inset,
+        0 -0.05em 0 0 hsl(260 0% 0%) inset;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    min-width: 100px;
+}
+
+.music-card a.listen-btn {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    width: 100px;
+    background: linear-gradient(135deg, #5a2d8c 0%, #3b1a6b 100%);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.music-card a.listen-btn .btn-text {
+    font-family: 'Fonarto', sans-serif;
+    font-size: 1.2rem;
+    color: #f8f7ff;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glow Effect (Hidden by Default) */
+.music-card a.listen-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+}
+
+/* Hover Effects */
+.music-card a.listen-btn:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow:
+        0 5px 15px rgba(154, 80, 224, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #6d3ba5 0%, #4c2285 100%);
+}
+
+.music-card a.listen-btn:hover::after {
+    opacity: 0.3;
+    animation: shine 1.5s infinite;
+}
+
+/* Active State */
+.music-card a.listen-btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 5px rgba(154, 80, 224, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(30deg) translate(-10%, -10%);
+    }
+
+    100% {
+        transform: rotate(30deg) translate(10%, 10%);
+    }
+}
+
+#musicList img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#musicList div:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+#musicList div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#musicList div:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+#musicList div:nth-child(4) {
+    animation-delay: 0.4s;
+}
