@@ -43,6 +43,18 @@
     cursor: pointer;
 }
 
+#confirmTracksBtn {
+    background: #764ba2;
+    color: white;
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
 #createNewBtn:hover {
     background: #5a2d8c;
 }

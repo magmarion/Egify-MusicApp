@@ -1,41 +1,34 @@
 import { PlaylistManager, Playlist } from "../models/musicModel.js";
 
-export function renderGroupedByGenre(groupedMusics) {
+export function renderMusicList(musics, playlists) {
     const container = document.getElementById('musicList');
     container.innerHTML = '';
 
-    for (const genre in groupedMusics) {
-        const section = document.createElement('section');
-        section.innerHTML = `<h2>${genre}</h2>`;
+    musics.forEach(music => {
+        const item = document.createElement('div');
+        item.classList.add('music-card');
 
-        groupedMusics[genre].forEach(music => {
-            const item = document.createElement('div');
-            item.classList.add('music-card');
+        const addBtn = document.createElement('button');
+        addBtn.textContent = '+';
+        addBtn.classList.add('add-to-playlist-btn');
+        addBtn.dataset.music = JSON.stringify(music);
+        addBtn.addEventListener('click', handleAddToPlaylistClick);
 
-            const addBtn = document.createElement('button');
-            addBtn.textContent = '+';
-            addBtn.classList.add('add-to-playlist-btn');
-            addBtn.dataset.music = JSON.stringify(music);
-            addBtn.addEventListener('click', handleAddToPlaylistClick);
+        item.innerHTML = `
+            <img src="${music.coverImage}" alt="${music.title} cover" width="200">
+            <p>
+                <a href="${music.trackUrl}" target="_blank" class="listen-btn">
+                    <span class="btn-text">Listen</span>
+                </a>
+            </p>
+            <h3>${music.title}</h3>
+            <p class="music-info">Artist: ${music.artist}</p>
+            <p class="music-info">Release Year: ${music.releaseYear}</p>
+        `;
 
-            item.innerHTML = `
-                <img src="${music.coverImage}" alt="${music.title} cover" width="200">
-                <p>
-                    <a href="${music.trackUrl}" target="_blank" class="listen-btn">
-                        <span class="btn-text">Listen</span>
-                    </a>
-                </p>
-                <h3>${music.title}</h3>
-                <p class="music-info">Artist: ${music.artist}</p>
-                <p class="music-info">Release Year: ${music.releaseYear}</p>
-            `;
-
-            item.appendChild(addBtn);
-            section.appendChild(item);
-        });
-
-        container.appendChild(section);
-    }
+        item.appendChild(addBtn);
+        container.appendChild(item);
+    });
 }
 
 function handleAddToPlaylistClick(event) {
@@ -47,23 +40,10 @@ function showPlaylistPopup(music) {
     const popup = document.createElement('div');
     popup.classList.add('modal');
 
-    const playlists = PlaylistManager.getPlaylists();
-
     popup.innerHTML = `
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <h3>Add "${music.title}" to playlist</h3>
-            
-            ${playlists.length > 0 ? `
-                <div class="playlist-options">
-                    ${playlists.map(playlist => `
-                        <button class="existing-playlist" data-name="${playlist.name}">
-                            ${playlist.name} (${playlist.tracks.length} tracks)
-                        </button>
-                    `).join('')}
-                </div>
-                <div class="divider">OR</div>
-            ` : ''}
             
             <div class="new-playlist">
                 <input type="text" placeholder="New playlist name" id="playlistNameInput" />
@@ -77,19 +57,6 @@ function showPlaylistPopup(music) {
     const closePopup = () => popup.remove();
 
     popup.querySelector('.close-btn').addEventListener('click', closePopup);
-
-    // Hantera befintliga spellistor
-    popup.querySelectorAll('.existing-playlist').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const playlistName = btn.dataset.name;
-            const playlist = playlists.find(p => p.name === playlistName);
-            if (playlist) {
-                playlist.addTrack(music);
-                PlaylistManager.savePlaylist(playlist);
-                closePopup();
-            }
-        });
-    });
 
     // Hantera ny spellista
     const createBtn = popup.querySelector('#createNewBtn');
