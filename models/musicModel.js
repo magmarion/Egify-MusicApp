@@ -8,7 +8,6 @@ export class Music {
         this.coverImage = coverImage;
     }
 }
-
 export class Playlist {
     constructor(name, tracks = []) {
         this.name = name;
@@ -22,7 +21,6 @@ export class Playlist {
         }
         return false;
     }
-
     removeTrack(trackUrl) {
         this.tracks = this.tracks.filter(t => t.trackUrl !== trackUrl);
     }
@@ -35,14 +33,15 @@ export function groupByGenre(musicArray) {
         return acc;
     }, {});
 }
-
-// Centraliserad spellisthantering
 export class PlaylistManager {
     static STORAGE_KEY = "playlists";
 
     static getPlaylists() {
         const data = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || "{}");
-        return Object.entries(data).map(([name, tracks]) => new Playlist(name, tracks));
+        return Object.entries(data).map(([name, tracks]) => {
+            const musicObjects = tracks.map(track => new Music(track));
+            return new Playlist(name, musicObjects);
+        });
     }
 
     static savePlaylist(playlist) {

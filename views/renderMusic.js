@@ -67,9 +67,9 @@ function showPlaylistPopup(music) {
         if (newName) {
             const newPlaylist = new Playlist(newName, [music]);
             PlaylistManager.savePlaylist(newPlaylist);
-            closePopup();
+            window.location.href = "playlist.html?refresh=true";
+
         } else {
-            // Visa felmeddelande nära input-fältet
             nameInput.style.borderColor = '#e53e3e';
             const errorMsg = document.createElement('p');
             errorMsg.className = 'error-msg';
@@ -78,7 +78,6 @@ function showPlaylistPopup(music) {
             errorMsg.style.marginTop = '0.5rem';
             errorMsg.style.fontSize = '0.9rem';
 
-            // Ta bort tidigare felmeddelande om det finns
             const existingError = popup.querySelector('.error-msg');
             if (existingError) existingError.remove();
 
@@ -86,7 +85,6 @@ function showPlaylistPopup(music) {
         }
     });
 
-    // Återställ border-färg när användaren börjar skriva
     nameInput.addEventListener('input', () => {
         nameInput.style.borderColor = '#e2e8f0';
         const errorMsg = popup.querySelector('.error-msg');

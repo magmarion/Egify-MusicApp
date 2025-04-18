@@ -1,7 +1,7 @@
 import { initMusicApp } from "./controller/musicController.js";
 import { initPlaylistApp } from "./controller/playlistController.js";
 
-let playlists = []; // simulerar spellistor här, kan senare sparas i localStorage
+let playlists = [];
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             modal.classList.add("hidden");
+
+            window.location.href = "playlist.html";
+
         };
 
         // STÄNG MODAL
@@ -70,16 +73,4 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.classList.add("hidden");
         };
     }
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const homeLink = document.getElementById("homeLink");
-
-    homeLink.addEventListener("click", (e) => {
-        const currentPath = window.location.pathname;
-        if (currentPath.endsWith("index.html") || currentPath === "/") {
-            e.preventDefault(); // Stoppa omdirigering
-        }
-    });
 });

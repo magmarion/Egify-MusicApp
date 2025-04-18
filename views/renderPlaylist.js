@@ -1,8 +1,10 @@
 import { mockMusics } from "../utils/mockedData.js";
 
-export function renderUserPlaylist(playlists, { onDelete } = {}) {
-    const container = document.getElementById('musicList');
+export function renderUserPlaylist(playlists, { onDelete, onClick } = {}) {
+    const container = document.getElementById('userPlaylistSection');
+    if (!container) return;
     container.innerHTML = '';
+    
 
     if (playlists.length === 0) {
         container.innerHTML = renderEmptyState();
@@ -19,11 +21,17 @@ export function renderUserPlaylist(playlists, { onDelete } = {}) {
                 `).join('')}
                 ${playlist.tracks.length > 3 ? '<p class="music-info">...</p>' : ''}
             `;
+
+            // Klicka på hela kortet för att visa spellistans låtar
+            card.addEventListener("click", () => {
+                onClick?.(playlist);
+            });
+
             container.appendChild(card);
         });
     }
 
-    // Event listeners för delete-knappar
+    // Stoppa radering från att trigga kort-klicket
     document.querySelectorAll('.delete-playlist-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -41,8 +49,6 @@ function renderEmptyState() {
         </div>
     `;
 }
-
-/* ================= MODAL FUNCTIONS (oförändrat) ================= */
 
 export function renderPlaylistCreation({ availableTracks = mockMusics, onCreate }) {
     const popup = document.createElement('div');
@@ -139,4 +145,54 @@ function showInputError(popup) {
     errorMsg.className = 'error-msg';
     errorMsg.textContent = 'Please enter a playlist name';
     input.insertAdjacentElement('afterend', errorMsg);
+}
+
+export function renderGenreList(genres, onGenreClick) {
+    const container = document.getElementById("musicList");
+    container.innerHTML = "";
+
+    genres.forEach(genre => {
+        const card = document.createElement("div");
+        card.className = "music-card";
+        card.innerHTML = `<h3>${genre}</h3>`;
+        card.addEventListener("click", () => onGenreClick(genre));
+        container.appendChild(card);
+    });
+}
+
+export function renderArtistList(genre, artists, onArtistClick) {
+    const container = document.getElementById("musicList");
+    container.innerHTML = `<h2>Artists in "${genre}"</h2>`;
+
+    artists.forEach(artist => {
+        const card = document.createElement("div");
+        card.className = "music-card";
+        card.innerHTML = `<h3>${artist}</h3>`;
+        card.addEventListener("click", () => onArtistClick(artist));
+        container.appendChild(card);
+    });
+}
+
+export function renderTrackList(tracks) {
+    const container = document.getElementById("musicList");
+    container.innerHTML = "";
+
+    tracks.forEach(track => {
+        const item = document.createElement('div');
+        item.classList.add('music-card');
+
+        item.innerHTML = `
+            <img src="${track.coverImage}" alt="${track.title} cover" width="200">
+            <p>
+                <a href="${track.trackUrl}" target="_blank" class="listen-btn">
+                    <span class="btn-text">Listen</span>
+                </a>
+            </p>
+            <h3>${track.title}</h3>
+            <p class="music-info">Artist: ${track.artist}</p>
+            <p class="music-info">Release Year: ${track.releaseYear}</p>
+        `;
+
+        container.appendChild(item);
+    });
 }
