@@ -4,7 +4,6 @@ export function renderUserPlaylist(playlists, { onDelete, onClick } = {}) {
     const container = document.getElementById('userPlaylistSection');
     if (!container) return;
     container.innerHTML = '';
-    
 
     if (playlists.length === 0) {
         container.innerHTML = renderEmptyState();
@@ -38,16 +37,6 @@ export function renderUserPlaylist(playlists, { onDelete, onClick } = {}) {
             onDelete?.(btn.dataset.name);
         });
     });
-}
-
-function renderEmptyState() {
-    return `
-        <div class="empty-state">
-            <div class="empty-state-icon">🎵</div>
-            <h3>No Playlists Yet</h3>
-            <p>Click "+ New Playlist" to create your first playlist</p>
-        </div>
-    `;
 }
 
 export function renderPlaylistCreation({ availableTracks = mockMusics, onCreate }) {
@@ -138,18 +127,10 @@ function renderTrackSelectionPopup(playlistName, availableTracks, onCreate) {
     });
 }
 
-function showInputError(popup) {
-    const input = popup.querySelector('#playlistNameInput');
-    input.style.borderColor = '#e53e3e';
-    const errorMsg = document.createElement('p');
-    errorMsg.className = 'error-msg';
-    errorMsg.textContent = 'Please enter a playlist name';
-    input.insertAdjacentElement('afterend', errorMsg);
-}
-
 export function renderGenreList(genres, onGenreClick) {
     const container = document.getElementById("musicList");
     container.innerHTML = "";
+    updatePlaylistTitle("Genres"); // ← Lägg till
 
     genres.forEach(genre => {
         const card = document.createElement("div");
@@ -162,7 +143,8 @@ export function renderGenreList(genres, onGenreClick) {
 
 export function renderArtistList(genre, artists, onArtistClick) {
     const container = document.getElementById("musicList");
-    container.innerHTML = `<h2>Artists in "${genre}"</h2>`;
+    container.innerHTML = "";
+    updatePlaylistTitle(`Artists in "${genre}"`); // ← Lägg till
 
     artists.forEach(artist => {
         const card = document.createElement("div");
@@ -173,14 +155,15 @@ export function renderArtistList(genre, artists, onArtistClick) {
     });
 }
 
-export function renderTrackList(tracks) {
+export function renderTrackList(tracks, artistName) {
     const container = document.getElementById("musicList");
     container.innerHTML = "";
+    
+    updatePlaylistTitle(`Tracks by "${artistName}"`);
 
     tracks.forEach(track => {
         const item = document.createElement('div');
         item.classList.add('music-card');
-
         item.innerHTML = `
             <img src="${track.coverImage}" alt="${track.title} cover" width="200">
             <p>
@@ -196,3 +179,17 @@ export function renderTrackList(tracks) {
         container.appendChild(item);
     });
 }
+
+function updatePlaylistTitle(title) {
+    let titleContainer = document.getElementById("playlistTitleContainer");
+
+    if (!titleContainer) {
+        titleContainer = document.createElement("div");
+        titleContainer.id = "playlistTitleContainer";
+        document.getElementById("musicList").prepend(titleContainer);
+    }
+
+    titleContainer.innerHTML = `<h2>${title}</h2>`;
+}
+
+

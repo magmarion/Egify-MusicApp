@@ -21,15 +21,23 @@ export const mockMusics = [
         genre: "Afrobeats",
         releaseYear: "2022",
         trackUrl: "https://youtu.be/h1iXtgCOCxo?si=fujn8wEaG2ITGXLh",
-        coverImage: ""
+        coverImage: "https://i.ytimg.com/vi/h1iXtgCOCxo/maxresdefault.jpg"
     },
     {
-        title: "Shape of You",
-        artist: "Ed Sheeran",
-        genre: "Pop",
-        releaseYear: "2017",
-        trackUrl: "https://youtu.be/JGwWNGJdvx8?si=pRkvSJ5Lnpucoi9g",
-        coverImage: "https://cloud.rtl.it/RTLFM/News/Article/1000x1000/ed-sheeran-ecco-il-nuovo-video-shape-of-you-j1dug.png"
+        title: "Stereo Love",
+        artist: "Edward Maya ft. Vika Jigulina",
+        genre: "Dance Electronoic",
+        releaseYear: "2009",
+        trackUrl: "https://youtu.be/Y49iv2VZhCk?si=bh7srPKLpcVQ_uhq",
+        coverImage: "https://bythewavs.com/wp-content/uploads/2014/09/artworks-000091517637-b9okjq-t500x500.jpg"
+    },
+    {
+        title: "Danza Kuduro",
+        artist: "Don Omar ft. Lucenzo",
+        genre: "Reggaeton",
+        releaseYear: "2010",
+        trackUrl: "https://youtu.be/oyFobb9_dlg?si=-0VEPCgeLKPDSxNu",
+        coverImage: "https://i.ytimg.com/vi/oyFobb9_dlg/maxresdefault.jpg"
     },
     {
         title: "Spectre",
