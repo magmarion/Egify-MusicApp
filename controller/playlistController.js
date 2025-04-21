@@ -1,32 +1,44 @@
-import { mockMusics } from "../utils/mockedData.js";
+import { fetchMusics } from "../utils/api.js";
 import {
     renderGenreList,
     renderArtistList,
     renderTrackList
 } from "../views/renderPlaylist.js";
 
-export function initPlaylistApp() {
-    const container = document.getElementById("musicList");
-    container.innerHTML = "";
+let allMusics = []; // Store fetched music data
 
-    document.body.style.overflowY = "hidden";
-    document.body.style.height = "100vh";
+export async function initPlaylistApp() {
+    try {
+        // Fetch music data from API
+        const rawData = await fetchMusics();
+        allMusics = rawData.map(data => new Music(data));
+        
+        const container = document.getElementById("musicList");
+        container.innerHTML = "";
 
-    const genreSection = document.createElement("div");
-    genreSection.id = "genreSection";
-    container.appendChild(genreSection);
+        document.body.style.overflowY = "hidden";
+        document.body.style.height = "100vh";
 
-    const genres = [...new Set(mockMusics.map(m => m.genre))];
-    renderGenreList(genres, handleGenreClick);
+        const genreSection = document.createElement("div");
+        genreSection.id = "genreSection";
+        container.appendChild(genreSection);
 
-    if (!history.state || history.state.view !== "genres") {
-        history.pushState({ view: "genres" }, "", "");
+        // Use the fetched data instead of mockMusics
+        const genres = [...new Set(allMusics.map(m => m.genre))];
+        renderGenreList(genres, handleGenreClick);
+
+        if (!history.state || history.state.view !== "genres") {
+            history.pushState({ view: "genres" }, "", "");
+        }
+    } catch (error) {
+        console.error("Failed to initialize playlist app:", error);
+        // You might want to render an error state here
     }
 }
 
 function handleGenreClick(selectedGenre) {
     const artists = [...new Set(
-        mockMusics
+        allMusics
             .filter(m => m.genre === selectedGenre)
             .map(m => m.artist)
     )];
@@ -37,9 +49,22 @@ function handleGenreClick(selectedGenre) {
 }
 
 function handleArtistClick(artist) {
-    const songs = mockMusics.filter(m => m.artist === artist);
+    const songs = allMusics.filter(m => m.artist === artist);
     renderTrackList(songs, artist);
     history.pushState({ view: "tracks", artist }, "", "");
+}
+
+// You'll need a basic Music class if you don't have one already
+class Music {
+    constructor(data) {
+        this.id = data.id;
+        this.title = data.title;
+        this.artist = data.artist;
+        this.genre = data.genre;
+        this.trackUrl = data.trackUrl;
+        this.coverImage = data.coverImage;
+        this.releaseYear = data.releaseYear;
+    }
 }
 
 window.addEventListener("popstate", (event) => {
@@ -61,9 +86,7 @@ window.addEventListener("popstate", (event) => {
             handleArtistClick(state.artist);
             break;
         default:
-            initHomePage(); // fallback igen
+            initHomePage(); // fallback
             break;
     }
 });
-
-

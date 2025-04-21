@@ -1,7 +1,7 @@
 #musicList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 2rem;
     justify-content: start;
     margin-top: 2rem;
     padding: 1rem;
@@ -20,7 +20,7 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
-    animation: fadeIn 0.9s ease forwards;
+    animation: fadeIn 0.5s ease forwards;
     opacity: 0;
 }
 
@@ -160,23 +160,6 @@
         transform: translateY(0);
     }
 }
-
-#musicList div:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-#musicList div:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-#musicList div:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-#musicList div:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
 
 @media (max-width: 1024px) {
     #musicList {

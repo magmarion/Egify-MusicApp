@@ -27,22 +27,27 @@ header {
     position: relative;
     flex-grow: 1;
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
     margin: 0;
+    font-family: 'Faster Stroker', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0.5rem 0;
+    color: #3b1a6b; 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
 .app-name a {
     text-decoration: none;
-    color: inherit;
-    cursor: pointer;
     display: inline-block;
-    height: 100%;
-    padding: 0.2em 0.5em;
-    z-index: 2;
     position: relative;
+    z-index: 2;    
+    padding: 0.2rem 0.5rem;
+    color: inherit;
+    transition: inherit;
 }
-
 
 .app-name::after {
     content: '';
@@ -78,7 +83,6 @@ nav ul li a {
     font-size: 18px;
 }
 
-/* Hover-effekt för länkar */
 nav ul li a:hover {
     text-decoration: underline;
 }
