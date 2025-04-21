@@ -164,11 +164,11 @@
 @media (max-width: 1024px) {
     #musicList {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: 1.75rem;
     }
 
     #musicList img {
-        width: 200px;
+        width: 300px;
         height: 200px;
     }
 
@@ -184,7 +184,7 @@
 @media (max-width: 600px) {
     #musicList {
         grid-template-columns: 1fr;
-        gap: 0.5rem;
+        gap: 1.5rem;
         padding: 0.5rem;
     }
 
