@@ -8,11 +8,3 @@ export class Music {
         this.coverImage = coverImage;
     }
 }
-
-export function groupByGenre(musicArray) {
-    return musicArray.reduce((acc, music) => {
-        if (!acc[music.genre]) acc[music.genre] = [];
-        acc[music.genre].push(music);
-        return acc;
-    }, {});
-}
