@@ -12,9 +12,12 @@ let allMusics = [];
 export async function initPlaylistApp() {
     try {
         const rawData = await fetchMusics();
-        allMusics = rawData
-            .map(data => new Music(data))
-            .filter(music => music.popularity > 50); // Filter unpopular songs
+        allMusics = rawData.map(data => {
+            const music = new Music(data);
+            music.genre = music.genre?.toLowerCase().trim(); // Normalize genre names
+            return music;
+        })
+            .filter(music => music.popularity > 50); // Filter unpopular
 
         clearContainerById(DOM_IDS.MUSIC_LIST);
         document.body.style.overflowY = "hidden";
