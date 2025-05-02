@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         initMusicApp();
     }
 
-    console.log("Current page:", window.location.pathname);
     console.log("Document title:", document.title);
 
     const hamburger = document.querySelector(".hamburger");
@@ -16,10 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll("nav a");
 
     hamburger.addEventListener("click", () => {
-        const expanded = nav.classList.toggle("active");
+        nav.classList.toggle("active");
         document.body.classList.toggle("menu-open");
-        hamburger.setAttribute("aria-expanded", expanded);
-    });    
+    });
 
     links.forEach(link => {
         link.addEventListener("click", () => {
