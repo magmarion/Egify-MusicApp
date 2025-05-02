@@ -16,9 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll("nav a");
 
     hamburger.addEventListener("click", () => {
-        nav.classList.toggle("active");
+        const expanded = nav.classList.toggle("active");
         document.body.classList.toggle("menu-open");
-    });
+        hamburger.setAttribute("aria-expanded", expanded);
+    });    
 
     links.forEach(link => {
         link.addEventListener("click", () => {
