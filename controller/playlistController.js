@@ -1,11 +1,11 @@
-import { Music } from "../models/musicModel.js";
 import { fetchMusics } from "../utils/api.js";
-import { clearContainerById, DOM_IDS } from "../utils/helpers.js";
+import { Music } from "../models/musicModel.js";
 import {
-    renderArtistList,
     renderGenreList,
+    renderArtistList,
     renderTrackList
-} from "../views/renderPlaylist/renderPlaylist.js";
+} from "../views/renderPlaylist.js";
+import { clearContainerById, DOM_IDS } from "../utils/helpers.js";
 
 let allMusics = [];
 
