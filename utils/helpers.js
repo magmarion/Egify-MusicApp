@@ -11,7 +11,7 @@ export function clearContainerById(id) {
 
 export function groupByGenre(musicArray) {
     return musicArray.reduce((acc, music) => {
-        const genre = music.genre || "Unknown";
+        const genre = music.genre?.toLowerCase();
         if (!acc[genre]) acc[genre] = [];
         acc[genre].push(music);
         return acc;
