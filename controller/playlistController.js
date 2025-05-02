@@ -16,8 +16,7 @@ export async function initPlaylistApp() {
             const music = new Music(data);
             music.genre = music.genre?.toLowerCase().trim(); // Normalize genre names
             return music;
-        })
-            .filter(music => music.popularity > 50); // Filter unpopular
+        }); // Filter unpopular
 
         clearContainerById(DOM_IDS.MUSIC_LIST);
         document.body.style.overflowY = "hidden";
