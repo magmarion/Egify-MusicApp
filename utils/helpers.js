@@ -11,11 +11,13 @@ export function clearContainerById(id) {
 
 export function groupByGenre(musicArray) {
     return musicArray.reduce((acc, music) => {
-        if (!acc[music.genre]) acc[music.genre] = [];
-        acc[music.genre].push(music);
+        const genre = music.genre || "Unknown";
+        if (!acc[genre]) acc[genre] = [];
+        acc[genre].push(music);
         return acc;
     }, {});
 }
+
 
 export function createSimpleCard(text, onClick) {
     const card = document.createElement("div");
