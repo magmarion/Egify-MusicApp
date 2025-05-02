@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         initMusicApp();
     }
 
+    console.log("Current page:", window.location.pathname);
+
     const hamburger = document.querySelector(".hamburger");
     const nav = document.querySelector("nav");
     const links = document.querySelectorAll("nav a");
