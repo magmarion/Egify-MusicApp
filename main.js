@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     console.log("Current page:", window.location.pathname);
+    console.log("Document title:", document.title);
 
     const hamburger = document.querySelector(".hamburger");
     const nav = document.querySelector("nav");
