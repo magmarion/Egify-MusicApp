@@ -1,6 +1,6 @@
 body {
     font-family: 'fonarto', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    background: linear-gradient(to bottom, #fff8e7, #f3e7ca);
     color: #2d3748;
     padding: 2rem;
     min-height: 100vh;
