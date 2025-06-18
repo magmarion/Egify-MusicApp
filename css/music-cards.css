@@ -8,12 +8,11 @@
 }
 
 #musicList div {
-    background: linear-gradient(135deg, #fff1f2, #fbe8e0);
-    border: 1px solid #f3d5d8;
-    padding: 1rem 1rem;
+    border: 1px solid #e0b7a4;
+    padding: 1.5rem;
     border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(210, 140, 140, 0.08);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -23,6 +22,7 @@
     cursor: pointer;
     animation: fadeIn 0.5s ease forwards;
     opacity: 0;
+    background: white;
 }
 
 #musicList div::before {
@@ -34,10 +34,6 @@
     height: 4px;
     background: linear-gradient(90deg, #f5a6b0 0%, #e0b7a4 100%);
 }
-
-
-
-
 
 
 .music-card a {
@@ -169,7 +165,7 @@
 
 @media (max-width: 1024px) {
     #musicList {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.75rem;
     }
 
@@ -187,29 +183,37 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
     #musicList {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0.5rem;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+        justify-content: center;
     }
 
     #musicList div {
-        padding: 0.5rem 0.75rem;
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
     }
 
     #musicList img {
-        width: 250px;
-        height: 250px;
-        border-radius: 10px;
-        margin-bottom: 0.5rem;
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin: 0.5rem auto;
+        object-fit: cover;
+        display: block;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     #musicList h3 {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        margin: 0.5rem 0;
     }
 
     #musicList .music-info {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
     }
 }
