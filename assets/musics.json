@@ -1,0 +1,74 @@
+[
+    {
+        "_id": "6806ae3ee363067700004841",
+        "title": "Wavin´Flag",
+        "genre": "Reggae Fusion",
+        "artist": "K'naan",
+        "releaseYear": "2009",
+        "trackUrl": "https://youtu.be/WTJSt4wP2ME?si=eikQh3GgU_blE37q",
+        "coverImage": "https://i1.sndcdn.com/artworks-dCkiH4AhlygHY4F0-hKA6lg-t500x500.jpg"
+    },
+    {
+        "_id": "6806af01e363067700004849",
+        "title": "Danza Kuduro",
+        "genre": "Reggaeton",
+        "artist": "Dan Omar ft. Lucenzo",
+        "releaseYear": "2010",
+        "trackUrl": "https://youtu.be/oyFobb9_dlg?si=-0VEPCgeLKPDSxNu",
+        "coverImage": "https://i.ytimg.com/vi/oyFobb9_dlg/maxresdefault.jpg"
+    },
+    {
+        "_id": "6806ae67e363067700004843",
+        "title": "Faded",
+        "genre": "Dance Electronic",
+        "artist": "Alan Walker",
+        "releaseYear": "2015",
+        "trackUrl": "https://youtu.be/kId1v7JDJtY",
+        "coverImage": "https://i1.sndcdn.com/artworks-000166082795-l5qemj-t500x500.jpg"
+    },
+    {
+        "_id": "6806aeb9e363067700004847",
+        "title": "Stereo Love",
+        "genre": "Dance Electronic",
+        "artist": "Edward Maya ft. Vika Jigulina",
+        "releaseYear": "2009",
+        "trackUrl": "https://youtu.be/Y49iv2VZhCk?si=bh7srPKLpcVQ_uhq",
+        "coverImage": "https://bythewavs.com/wp-content/uploads/2014/09/artworks-000091517637-b9okjq-t500x500.jpg"
+    },
+    {
+        "_id": "6806ae94e363067700004845",
+        "title": "Calm Down",
+        "genre": "Afrobeats",
+        "artist": "Rema",
+        "releaseYear": "2022",
+        "trackUrl": "https://youtu.be/h1iXtgCOCxo?si=fujn8wEaG2ITGXLh",
+        "coverImage": "https://i.ytimg.com/vi/h1iXtgCOCxo/maxresdefault.jpg"
+    },
+    {
+        "_id": "6806af21e36306770000484b",
+        "title": "Spectre",
+        "genre": "Dance Electronic",
+        "artist": "Alan Walker",
+        "releaseYear": "2017",
+        "trackUrl": "https://youtu.be/qHDJSRlNhVs?si=0b4ZznpeStnUI89C",
+        "coverImage": "https://i1.sndcdn.com/artworks-ZdCS11kNeiyAAVf9-zuTrOA-t500x500.jpg"
+    },
+    {
+        "_id": "6806af47e36306770000484d",
+        "title": "On The Floor",
+        "genre": "Dance Techno",
+        "artist": "Jennifer Lopez ft.  Pitbull",
+        "releaseYear": "2011",
+        "trackUrl": "https://youtu.be/t4H_Zoh7G5A?si=iXZhikkAPepdcLgg",
+        "coverImage": "https://www.salutemusic.com/cdn/shop/products/Nails_Hair_Hips_Heels-8.png?v=1658940737"
+    },
+    {
+        "_id": "6806af74e36306770000484f",
+        "title": "Rain Over Me",
+        "genre": "Dance Pop",
+        "artist": "Pitbull ft. Marc Anthony",
+        "releaseYear": "2011",
+        "trackUrl": "https://youtu.be/SmM0653YvXU?si=U2ylPqe0Xz-erRKc",
+        "coverImage": "https://i.scdn.co/image/ab67616d0000b273609d9d3763f8b723568fdced"
+    }
+]
